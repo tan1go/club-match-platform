@@ -81,6 +81,7 @@
             <p id="reminderText">暂无预约提醒</p>
           </div>
         </div>
+        <div id="nextStepGuide" class="hint-box">下一步建议：先完成测评并选择意向社团。</div>
       </article>
     </section>
 
@@ -127,6 +128,28 @@
 
       <article class="card">
         <h2>报名管理与跨社推荐<span class="p-badge p0">P0</span></h2>
+        <div class="toolbar-inline">
+          <label>
+            状态筛选
+            <select id="applicantStatusFilter">
+              <option value="all">全部</option>
+              <option value="待面试">待面试</option>
+              <option value="待定">待定</option>
+              <option value="已通过">已通过</option>
+              <option value="已拒绝">已拒绝</option>
+            </select>
+          </label>
+          <label>
+            排序方式
+            <select id="applicantSort">
+              <option value="newest">按最新报名</option>
+              <option value="club">按社团名称</option>
+              <option value="status">按状态</option>
+            </select>
+          </label>
+          <button id="batchPassBtn" class="btn">批量通过</button>
+          <button id="batchHoldBtn" class="btn">批量待定</button>
+        </div>
         <div id="applicantTableWrap" class="table-wrap"></div>
       </article>
 
@@ -153,8 +176,16 @@
       <article class="card">
         <h2>招新监控与数据统计<span class="p-badge p1">P1</span></h2>
         <div id="monitorBoard" class="kpi-grid"></div>
+        <div id="funnelBoard" class="kpi-grid"></div>
         <div id="alertBox" class="alert"></div>
         <div id="topClubsTable" class="table-wrap"></div>
+        <div class="event-log">
+          <div class="row-between">
+            <strong>关键事件日志（埋点模拟）</strong>
+            <button id="clearEventLogBtn" class="btn">清空日志</button>
+          </div>
+          <div id="eventLogList" class="list-wrap"></div>
+        </div>
         <div class="actions">
           <button id="exportReportBtn" class="btn">导出全校报表</button>
         </div>

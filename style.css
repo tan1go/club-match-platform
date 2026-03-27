@@ -190,6 +190,14 @@ textarea {
   margin: 10px 0 14px;
 }
 
+.toolbar-inline {
+  margin-bottom: 12px;
+  display: flex;
+  gap: 10px;
+  align-items: end;
+  flex-wrap: wrap;
+}
+
 .recommend-grid {
   display: grid;
   gap: 12px;
@@ -232,6 +240,16 @@ textarea {
   border: 1px dashed #cbd5e1;
   border-radius: 10px;
   padding: 12px;
+}
+
+.hint-box {
+  margin-top: 12px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  color: #1e3a8a;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 13px;
 }
 
 .list-wrap {
@@ -312,6 +330,57 @@ th {
   color: #9a3412;
   border-radius: 10px;
   padding: 10px;
+}
+
+.event-log {
+  margin-top: 10px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 10px;
+  background: #f8fafc;
+}
+
+.event-log .list-item {
+  background: #fff;
+}
+
+.event-time {
+  font-size: 12px;
+  color: #64748b;
+}
+
+.event-name {
+  font-weight: 600;
+}
+
+.event-props {
+  font-size: 12px;
+  color: #475569;
+  margin-top: 4px;
+}
+
+.funnel-kpi {
+  background: #f0f9ff;
+  border: 1px solid #bae6fd;
+}
+
+.funnel-kpi .num {
+  color: #0c4a6e;
+}
+
+.checkbox {
+  width: auto;
+}
+
+.compact-btn {
+  padding: 5px 8px;
+  font-size: 12px;
+}
+
+.explain-line {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #475569;
 }
 
 .status {
