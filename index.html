@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>社团招新智能匹配平台</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-title">社团招新智能匹配平台</div>
+    <p class="hero-sub">
+      基于兴趣与能力图谱的双向匹配，覆盖新生端、社团端、管理端核心流程
+    </p>
+    <div class="hero-meta">
+      <span>版本 V1.0 MVP</span>
+      <span>状态：可交互演示</span>
+      <span>场景：高校社团招新</span>
+    </div>
+  </header>
+
+  <main class="page">
+    <nav class="role-tabs" id="roleTabs">
+      <button class="tab active" data-target="freshmanPanel">新生端</button>
+      <button class="tab" data-target="clubPanel">社团端</button>
+      <button class="tab" data-target="adminPanel">管理端</button>
+    </nav>
+
+    <section id="freshmanPanel" class="panel active">
+      <div class="grid two">
+        <article class="card">
+          <h2>兴趣测评（10题）<span class="p-badge p0">P0</span></h2>
+          <p class="muted">完成测评后自动生成人设标签，并触发智能推荐。</p>
+          <form id="evaluationForm" class="form-grid"></form>
+          <div class="actions">
+            <button id="evaluateBtn" class="btn primary">完成测评并推荐</button>
+          </div>
+          <div id="personaTags" class="tags-wrap"></div>
+        </article>
+
+        <article class="card">
+          <h2>我的社团<span class="p-badge p1">P1</span></h2>
+          <p class="muted">查看报名进度、取消报名、面试通过后展示入群入口。</p>
+          <div id="myClubsList" class="list-wrap"></div>
+        </article>
+      </div>
+
+      <article class="card">
+        <h2>智能推荐与社团详情<span class="p-badge p0">P0</span></h2>
+        <div class="toolbar">
+          <label>
+            类别筛选
+            <select id="categoryFilter">
+              <option value="all">全部类别</option>
+              <option value="tech">技术创新</option>
+              <option value="art">文艺创作</option>
+              <option value="sports">体育运动</option>
+              <option value="volunteer">公益服务</option>
+              <option value="business">商业管理</option>
+            </select>
+          </label>
+        </div>
+        <div id="recommendList" class="recommend-grid"></div>
+      </article>
+
+      <article class="card">
+        <h2>报名与面试<span class="p-badge p0">P0</span></h2>
+        <div class="grid three">
+          <div class="mini-card">
+            <h3>一键报名</h3>
+            <p>自动调取基础资料，支持作品集链接。</p>
+            <input id="portfolioInput" type="url" placeholder="可选：作品集链接">
+          </div>
+          <div class="mini-card">
+            <h3>面试预约</h3>
+            <select id="interviewSlotSelect"></select>
+            <button id="bookInterviewBtn" class="btn">预约面试</button>
+          </div>
+          <div class="mini-card">
+            <h3>提醒推送模拟</h3>
+            <p id="reminderText">暂无预约提醒</p>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section id="clubPanel" class="panel">
+      <div class="grid two">
+        <article class="card">
+          <h2>社团主页管理<span class="p-badge p0">P0</span></h2>
+          <label class="switch-row">
+            <span>招新开关</span>
+            <input id="recruitSwitch" type="checkbox" checked>
+          </label>
+          <label>
+            招新人数上限
+            <input id="quotaInput" type="number" min="10" max="200" value="60">
+          </label>
+          <button id="saveClubConfigBtn" class="btn primary">保存配置</button>
+          <p id="quotaStatus" class="muted"></p>
+        </article>
+
+        <article class="card">
+          <h2>智能成员招募<span class="p-badge p1">P1</span></h2>
+          <p class="muted">每日主动邀约上限：20 条</p>
+          <textarea id="inviteTemplate" rows="3">同学你好，你与我们社团的匹配度很高，欢迎来参加面试～</textarea>
+          <div class="actions">
+            <button id="sendInviteBtn" class="btn">发送邀约</button>
+            <span id="inviteCounter" class="badge">今日已发送 0 / 20</span>
+          </div>
+        </article>
+      </div>
+
+      <article class="card">
+        <h2>面试排期管理<span class="p-badge p0">P0</span></h2>
+        <div class="grid three">
+          <input id="sessionTime" type="datetime-local">
+          <input id="sessionLocation" type="text" placeholder="地点，如：学生活动中心 203">
+          <input id="sessionCap" type="number" min="1" max="100" value="15">
+        </div>
+        <div class="actions">
+          <button id="createSessionBtn" class="btn primary">创建面试场次</button>
+          <button id="exportSessionBtn" class="btn">导出预约名单</button>
+        </div>
+        <div id="sessionList" class="list-wrap"></div>
+      </article>
+
+      <article class="card">
+        <h2>报名管理与跨社推荐<span class="p-badge p0">P0</span></h2>
+        <div id="applicantTableWrap" class="table-wrap"></div>
+      </article>
+
+      <article class="card">
+        <h2>数据看板<span class="p-badge p1">P1</span></h2>
+        <div id="clubDashboard" class="kpi-grid"></div>
+      </article>
+    </section>
+
+    <section id="adminPanel" class="panel">
+      <div class="grid two">
+        <article class="card">
+          <h2>社团审核<span class="p-badge p0">P0</span></h2>
+          <div id="auditList" class="list-wrap"></div>
+        </article>
+        <article class="card">
+          <h2>系统配置<span class="p-badge p2">P2</span></h2>
+          <label>招新季时间窗 <input id="seasonRange" type="text" value="2026-09-01 ~ 2026-10-15"></label>
+          <label>私聊上限（每日） <input id="chatLimitInput" type="number" min="1" max="50" value="20"></label>
+          <button id="saveSystemConfigBtn" class="btn primary">保存系统配置</button>
+        </article>
+      </div>
+
+      <article class="card">
+        <h2>招新监控与数据统计<span class="p-badge p1">P1</span></h2>
+        <div id="monitorBoard" class="kpi-grid"></div>
+        <div id="alertBox" class="alert"></div>
+        <div id="topClubsTable" class="table-wrap"></div>
+        <div class="actions">
+          <button id="exportReportBtn" class="btn">导出全校报表</button>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="footer">
+    © 社团招新智能匹配平台产品组 · 演示版（根据 PRD 功能实现）
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>
